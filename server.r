@@ -684,7 +684,7 @@ shinyServer(function(input, output, session){
 
     # Plot
     output$plot <- renderPlotly({
-        
+        ggsave("plot.pdf", plotInput())
         input$plotScatterBoxOrHeatmap
 
         input$LUTminmax
@@ -707,6 +707,7 @@ shinyServer(function(input, output, session){
                          colTreatment = input$colTreatment, 
                          colBatch = input$colBatch,
                          colColors = if("HTM_color" %in% names(htmFilteredForCurrentPlot())) "HTM_color"),
+			 
                        
                      "Boxplot"      = boxPlot(
                          df =  htmFilteredForCurrentPlot(), 
